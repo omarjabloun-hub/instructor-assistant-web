@@ -1,0 +1,62 @@
+.dock {
+  margin: 18px 40px 28px;
+  padding: 14px 16px;
+  background: var(--ink-strong);
+  color: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-2);
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  gap: 14px;
+  align-items: center;
+}
+.spark {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent-500);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.input {
+  background: transparent;
+  border: 0;
+  color: white;
+  font-family: var(--font-body);
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  letter-spacing: var(--ls-body);
+}
+.input::placeholder { color: rgba(255, 255, 255, 0.55); }
+
+.hints { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+.hint {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+.hint:hover { background: rgba(255, 255, 255, 0.14); color: white; }
+
+.send {
+  background: white;
+  color: var(--ink-strong);
+  border: 0;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: var(--w-semibold);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+.send:hover { background: rgba(255, 255, 255, 0.92); }

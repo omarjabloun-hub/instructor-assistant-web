@@ -1,25 +1,25 @@
-@import "./tokens.css";
+@import './tokens.css';
+@import './reset.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+html {
+  font-family: var(--font-body);
+  color: var(--ink-body);
+  background: var(--surface-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 
-@layer base {
-  html,
-  body {
-    @apply bg-bg text-text antialiased;
-    font-family: var(--font-sans);
-  }
+body {
+  font-size: var(--t-body-md);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  min-height: 100vh;
+}
 
-  * {
-    @apply border-border;
-  }
-
-  :focus-visible {
-    @apply outline-none ring-2 ring-primary/60 ring-offset-2 ring-offset-bg;
-  }
-
-  ::selection {
-    background-color: rgb(var(--color-primary) / 0.25);
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--w-semibold);
+  color: var(--ink-strong);
+  margin: 0;
 }

@@ -1,0 +1,27 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 24px;
+  background: var(--surface-base);
+  border-bottom: 1px solid var(--line-soft);
+  height: 100%;
+}
+
+.search {
+  flex: 0 1 320px;
+  position: relative;
+}
+.searchInput {
+  padding-left: 30px;
+  font-size: 13px;
+  height: 32px;
+}
+.searchIcon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-muted);
+  pointer-events: none;
+}

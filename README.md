@@ -1,136 +1,123 @@
-# Instructor Assistant Web
+# Instructor Assistant — Web
 
-AI-powered teaching workspace for educators — built with Next.js 15, TypeScript, Tailwind CSS, and an atomic component system.
+A React frontend for an AI-assisted teaching platform. Implements every view exported from
+[Claude Design](https://claude.ai/design): Dashboard, Courses (Course Studio), Create Assessment,
+Exam Builder, AI Grader, plus a `/design-system` showcase of the atomic component library.
+
+Stack: **Vite · React 18 · TypeScript · CSS Modules · class-variance-authority · React Router 6**.
 
 ## Getting started
 
 ```bash
 npm install
-npm run dev
+npm run dev      # http://localhost:5173
+npm run build    # type-check + production bundle
+npm run preview  # serve the production build
 ```
-
-Open <http://localhost:3000>. The landing page links into the demo app at `/dashboard`.
-
-## Available scripts
-
-| Script              | Description                          |
-| ------------------- | ------------------------------------ |
-| `npm run dev`       | Start the dev server on port 3000.   |
-| `npm run build`     | Production build.                    |
-| `npm run start`     | Serve the production build.          |
-| `npm run lint`      | Run Next/ESLint checks.              |
-| `npm run typecheck` | Run TypeScript without emitting.     |
 
 ## Architecture
 
-The project follows **Atomic Design** — components are layered from smallest to largest, with strict one-way dependencies (atoms → molecules → organisms → templates → pages).
-
 ```
 src/
-├── app/                       # Next.js App Router pages
-│   ├── (app)/                 # Authenticated app — uses AppShell layout
-│   │   ├── dashboard/
-│   │   ├── courses/
-│   │   ├── students/
-│   │   ├── assignments/
-│   │   ├── schedule/
-│   │   ├── messages/
-│   │   ├── assistant/
-│   │   └── settings/
-│   ├── login/                 # Auth pages — use AuthLayout
-│   ├── signup/
-│   └── page.tsx               # Marketing landing
-├── components/
-│   ├── atoms/                 # Button, Input, Badge, Avatar, …
-│   ├── molecules/             # Card, FormField, SearchBar, Tabs, …
-│   ├── organisms/             # Sidebar, TopBar, AssistantPanel, …
-│   └── templates/             # AppShell, AuthLayout
+├── styles/
+│   ├── tokens.css       ← All design tokens. Edit this to retheme the app.
+│   ├── reset.css
+│   └── globals.css
 ├── lib/
-│   ├── cn.ts                  # clsx + tailwind-merge helper
-│   └── mock.ts                # Demo data
-└── styles/
-    ├── tokens.css             # CSS variables (the design system)
-    └── globals.css            # Tailwind layers + base resets
+│   ├── cn.ts            ← className joiner (clsx wrapper)
+│   ├── icons.tsx        ← Lucide-style inline SVG icons
+│   └── types.ts         ← SpectrumColor, format/question color maps
+├── components/
+│   ├── atoms/           ← Primitives (Button, Chip, Input, Avatar, …)
+│   ├── molecules/       ← Composed primitives (NavItem, Tabs, FormField, …)
+│   ├── organisms/       ← Page-spanning pieces (Sidebar, Topbar, ClassCard, …)
+│   └── templates/       ← AppShell — the 4-cell layout grid
+├── pages/
+│   ├── Dashboard/
+│   ├── Courses/         ← Course Studio (the big one)
+│   │   └── parts/       ← Page-specific organisms colocated with the page
+│   ├── CreateAssessment/
+│   ├── ExamBuilder/
+│   ├── AIGrader/
+│   └── DesignSystem/
+├── App.tsx              ← Routes
+└── main.tsx             ← React root + BrowserRouter
 ```
 
-## Styling system
+### Atomic design
 
-Three layers give us both global control and per-instance flexibility:
+Components are organized following Atomic Design with one tweak: page-specific compositions
+that aren't reused elsewhere live in `pages/<Page>/parts/`. This keeps the shared library lean
+and signals reusability by location.
 
-### 1. Design tokens (`src/styles/tokens.css`)
+| Level         | Examples                                              | Reusable? |
+| ------------- | ----------------------------------------------------- | --------- |
+| **Atoms**     | `Button`, `Chip`, `Input`, `Avatar`, `Card`, `Kbd`    | ✓ Always  |
+| **Molecules** | `NavItem`, `Tabs`, `FormField`, `Callout`, `FilterChip` | ✓ Always  |
+| **Organisms** | `Sidebar`, `Topbar`, `Brand`, `ClassCard`, `DraftList` | ✓ Cross-page |
+| **Templates** | `AppShell`                                            | ✓ All pages |
+| **Page parts**| `pages/Courses/parts/CoverBand`, `WeekCard`, etc.     | One page  |
 
-Every colour, radius, shadow, and font is a CSS variable on `:root`. Override **one** variable and the whole app updates. A `[data-theme="dark"]` block ships out of the box; add more themes by adding more selectors.
+### Styling — three layers of control
 
-```css
-:root {
-  --color-primary: 79 70 229;
-  --radius-md: 0.5rem;
-  /* … */
-}
-```
+**1. App-wide:** change `src/styles/tokens.css` — one file controls colors, type, spacing,
+radii, shadows, motion across every screen. The Spectrum palette is 10 named colors, each in
+three flavours (text on white, soft bg, solid fill).
 
-### 2. Tailwind config (`tailwind.config.ts`)
-
-Tailwind utilities read from those CSS vars (`bg-primary`, `text-text-muted`, `rounded-lg`, …). The `<alpha-value>` placeholder means every colour utility supports `/50` alpha syntax (`bg-primary/20`).
-
-### 3. Component variants (`class-variance-authority`)
-
-Each atomic component exposes variants via `cva`. For example, `Button`:
+**2. Component-wide:** edit `<Component>.module.css`. CSS Modules scope class names per
+component; nothing leaks. Variants are declared with [class-variance-authority][cva] for
+type-safe combinations:
 
 ```tsx
-<Button variant="primary" size="lg" />
-<Button variant="outline" />
-<Button variant="ghost" leftIcon={<Icon />} />
-<Button className="rounded-full" />  {/* per-instance override */}
+<Button variant="ai" size="sm" leadingIcon={<IconSparkle />}>
+  Ask Assistant
+</Button>
 ```
 
-To change *all* buttons globally → edit the `buttonVariants` definition once. To re-skin *just one* button → pass `className`; `tailwind-merge` resolves conflicts so the override wins.
+**3. Per-instance:** every component accepts `className` and (where relevant) `style`. Pair
+with `cn(...)` from `@/lib/cn` to merge cleanly.
 
-### Adding a new component
+```tsx
+<Chip color="purple" className={styles.heavyPad}>Custom</Chip>
+```
 
-1. Create `src/components/atoms/Foo.tsx` (or `molecules/`, …).
-2. If it has visual variants, define them with `cva` and export the variants object too — consumers can extend it.
-3. Re-export from the layer's `index.ts`.
-4. Compose into a molecule or organism — never reach down past your layer.
+[cva]: https://cva.style/
 
-## Theming
+### Adding a new color or variant
 
-Toggle dark mode by setting `data-theme="dark"` on `<html>`. The TopBar has a built-in toggle that persists to `localStorage`.
-
-To add a new theme:
+Add a new tone to `tokens.css`:
 
 ```css
-:root[data-theme="ocean"] {
-  --color-primary: 14 165 233;
-  --color-bg: 245 250 255;
-  /* … */
-}
+--c-indigo-text:  #4338CA;
+--c-indigo-bg:    #E0E7FF;
+--c-indigo-solid: #6366F1;
 ```
 
-No component changes needed — they all read from the variables.
+Then add `indigo` to the `SpectrumColor` union in `src/lib/types.ts` and the variant block in
+each consuming component's CSS Module. The CVA recipe in each `.tsx` will pick it up.
 
-## Pages
+### Routes
 
-| Route               | What it shows                                                 |
-| ------------------- | ------------------------------------------------------------- |
-| `/`                 | Marketing landing page                                        |
-| `/login`            | Sign-in form with SSO buttons                                 |
-| `/signup`           | New account form                                              |
-| `/dashboard`        | Overview: stats, courses, today's schedule, at-risk students  |
-| `/courses`          | Tabbed grid of all courses (active / drafts / archived)       |
-| `/courses/[id]`     | Single course detail with students & assignments              |
-| `/students`         | Filterable student roster table                               |
-| `/assignments`      | Tabbed assignment list with submission progress               |
-| `/schedule`         | Weekly calendar view                                          |
-| `/messages`         | Two-column inbox + thread view                                |
-| `/assistant`        | Full-height AI chat panel                                     |
-| `/settings`         | Profile / Preferences / Notifications / Billing tabs          |
+| Path                   | Page              |
+| ---------------------- | ----------------- |
+| `/`                    | Dashboard         |
+| `/courses`             | Courses (Studio)  |
+| `/create-assessment`   | Create Assessment |
+| `/exam-builder`        | Exam Builder      |
+| `/ai-grader`           | AI Grader         |
+| `/design-system`       | Design System     |
 
-## Tech
+## Scripts
 
-- **Next.js 15** (App Router, React 19)
-- **TypeScript**, strict
-- **Tailwind CSS 3** with CSS-variable tokens
-- **class-variance-authority** for component variants
-- **tailwind-merge** + **clsx** for safe class composition
-- **lucide-react** for icons
+| Command            | What it does                                |
+| ------------------ | ------------------------------------------- |
+| `npm run dev`      | Vite dev server with HMR                    |
+| `npm run build`    | TypeScript check + production bundle        |
+| `npm run preview`  | Serve the production build locally          |
+| `npm run typecheck`| TypeScript only, no build                   |
+
+## Credits
+
+Designs by [Claude Design](https://claude.ai/design) (Spectrum direction). Implementation
+preserves the visual system 1:1 while restructuring as a real React app with proper component
+boundaries.

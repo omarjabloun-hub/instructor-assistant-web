@@ -1,0 +1,20 @@
+.chip {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-raised);
+  border: 1px solid var(--line-soft);
+  color: var(--ink-body);
+  cursor: pointer;
+  transition: background var(--dur-fast), color var(--dur-fast);
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+.chip:hover:not(.on) {
+  background: var(--surface-hover);
+}
+.on {
+  background: var(--ink-strong);
+  color: var(--ink-inverse);
+  border-color: var(--ink-strong);
+}

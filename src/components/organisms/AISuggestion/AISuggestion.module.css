@@ -1,0 +1,23 @@
+.card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 100% 0%, var(--accent-100) 0%, transparent 60%),
+    radial-gradient(80% 60% at 0% 100%, var(--c-pink-bg) 0%, transparent 50%),
+    var(--surface-raised);
+  border: 1px solid var(--accent-100);
+  padding: 22px 22px 20px;
+}
+.title {
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  font-weight: var(--w-semibold);
+  color: var(--ink-strong);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.title :global(svg) { stroke: var(--accent-500); }
+.body { font-size: 13.5px; color: var(--ink-body); margin: 0 0 16px; line-height: 1.55; }
+.actions { display: flex; gap: 8px; }
