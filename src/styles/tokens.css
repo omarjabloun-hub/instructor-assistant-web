@@ -1,99 +1,134 @@
-/*
- * Design tokens.
- * Every component reads from these variables — change a value here and the
- * whole app updates. Override `data-theme` blocks to add new themes.
- */
+/* =========================================================================
+   Instructor Assistant — Design Tokens (Spectrum direction)
+   Change a value here and it cascades through the entire app.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
 
 :root {
-  /* Color palette (RGB triplets so Tailwind can apply alpha) */
-  --color-bg: 250 250 252;
-  --color-bg-muted: 244 245 247;
-  --color-bg-subtle: 237 239 243;
-  --color-bg-inverse: 15 18 26;
+  /* ─── Surfaces ─────────────────────────────────────────────────────────── */
+  --surface-base:        #FFFFFF;
+  --surface-raised:      #FFFFFF;
+  --surface-sunken:      #F7F6F3;
+  --surface-hover:       #F1F1EE;
+  --surface-active:      #E9E9E5;
+  --surface-overlay:     rgba(15, 15, 15, 0.42);
 
-  --color-surface: 255 255 255;
-  --color-surface-raised: 255 255 255;
+  /* ─── Ink ──────────────────────────────────────────────────────────────── */
+  --ink-strong:          #1A1A19;
+  --ink-body:            #37352F;
+  --ink-muted:           #787774;
+  --ink-subtle:          #B3B0A8;
+  --ink-inverse:         #FFFFFF;
 
-  --color-border: 226 229 235;
-  --color-border-strong: 200 205 215;
+  /* ─── Lines ────────────────────────────────────────────────────────────── */
+  --line-soft:           #ECEAE4;
+  --line-strong:         #D9D6CD;
 
-  --color-text: 17 24 39;
-  --color-text-muted: 75 85 99;
-  --color-text-subtle: 130 138 152;
-  --color-text-inverse: 255 255 255;
+  /* ─── Brand accent ─ violet (reserved for AI moments) ──────────────────── */
+  --accent-50:           #F5F1FF;
+  --accent-100:          #E9E0FF;
+  --accent-300:          #B9A3FF;
+  --accent-500:          #7C5CFC;
+  --accent-600:          #6A47F5;
+  --accent-700:          #5430D4;
+  --accent-on:           #FFFFFF;
 
-  --color-primary: 79 70 229;
-  --color-primary-hover: 67 56 202;
-  --color-primary-fg: 255 255 255;
-  --color-primary-subtle: 238 236 255;
+  /* ─── Spectrum — 10 named colors (text / soft-bg / solid) ──────────────── */
+  --c-gray-text:    #6F6D66;   --c-gray-bg:    #F1F1EE;   --c-gray-solid:    #8A8780;
+  --c-brown-text:   #93573A;   --c-brown-bg:   #F4ECE5;   --c-brown-solid:   #B8714A;
+  --c-orange-text:  #C2570E;   --c-orange-bg:  #FBEAD7;   --c-orange-solid:  #F08A2C;
+  --c-yellow-text:  #A87617;   --c-yellow-bg:  #FBF1CF;   --c-yellow-solid:  #E9B53D;
+  --c-green-text:   #0F7B5C;   --c-green-bg:   #DBEEE5;   --c-green-solid:   #21A879;
+  --c-teal-text:    #0E7185;   --c-teal-bg:    #D9ECF1;   --c-teal-solid:    #2AA9C3;
+  --c-blue-text:    #145CC2;   --c-blue-bg:    #DDE6F8;   --c-blue-solid:    #3B82F6;
+  --c-purple-text:  #6A3CC8;   --c-purple-bg:  #EBE2F8;   --c-purple-solid:  #9067E3;
+  --c-pink-text:    #B4276F;   --c-pink-bg:    #F8DEEB;   --c-pink-solid:    #E15B9D;
+  --c-red-text:     #C92A2A;   --c-red-bg:     #FBE0DD;   --c-red-solid:     #EF4444;
 
-  --color-accent: 14 165 233;
-  --color-accent-fg: 255 255 255;
+  /* ─── Semantic ─────────────────────────────────────────────────────────── */
+  --success-50:    var(--c-green-bg);
+  --success-500:   var(--c-green-solid);
+  --success-700:   var(--c-green-text);
+  --warning-50:    var(--c-yellow-bg);
+  --warning-500:   var(--c-yellow-solid);
+  --warning-700:   var(--c-yellow-text);
+  --danger-50:     var(--c-red-bg);
+  --danger-500:    var(--c-red-solid);
+  --danger-700:    var(--c-red-text);
+  --info-50:       var(--c-blue-bg);
+  --info-500:      var(--c-blue-solid);
+  --info-700:      var(--c-blue-text);
 
-  --color-success: 22 163 74;
-  --color-success-fg: 255 255 255;
-  --color-success-subtle: 220 250 230;
+  --ai-50:         var(--accent-50);
+  --ai-100:        var(--accent-100);
+  --ai-500:        var(--accent-500);
+  --ai-700:        var(--accent-700);
 
-  --color-warning: 217 119 6;
-  --color-warning-fg: 255 255 255;
-  --color-warning-subtle: 254 243 199;
+  /* ─── Type ─────────────────────────────────────────────────────────────── */
+  --font-display:  'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body:     'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:     'Geist Mono', 'SF Mono', Menlo, Consolas, monospace;
 
-  --color-danger: 220 38 38;
-  --color-danger-fg: 255 255 255;
-  --color-danger-subtle: 254 226 226;
+  --t-display-xl:  clamp(40px, 4vw, 56px);
+  --t-display-lg:  clamp(30px, 3vw, 40px);
+  --t-display-md:  24px;
+  --t-display-sm:  20px;
+  --t-body-lg:     16px;
+  --t-body-md:     14px;
+  --t-body-sm:     13px;
+  --t-body-xs:     12px;
 
-  /* Radii */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
+  --w-regular:     400;
+  --w-medium:      500;
+  --w-semibold:    600;
+  --w-bold:        700;
 
-  /* Typography */
-  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --lh-display:    1.12;
+  --lh-body:       1.55;
+  --lh-tight:      1.25;
 
-  /* Elevation */
-  --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.05);
-  --shadow-md: 0 4px 12px -2px rgb(15 23 42 / 0.08), 0 2px 4px -2px rgb(15 23 42 / 0.05);
-  --shadow-lg: 0 12px 28px -8px rgb(15 23 42 / 0.18), 0 4px 10px -2px rgb(15 23 42 / 0.06);
-  --shadow-xl: 0 24px 48px -12px rgb(15 23 42 / 0.25);
+  --ls-display:    -0.025em;
+  --ls-display-md: -0.015em;
+  --ls-body:       -0.003em;
+  --ls-smallcaps:  0.04em;
 
-  /* Motion */
-  --duration-base: 180ms;
-}
+  /* ─── Radii ────────────────────────────────────────────────────────────── */
+  --radius-xs:     4px;
+  --radius-sm:     6px;
+  --radius-md:     8px;
+  --radius-lg:     12px;
+  --radius-xl:     16px;
+  --radius-pill:   9999px;
 
-:root[data-theme="dark"] {
-  --color-bg: 13 15 22;
-  --color-bg-muted: 18 21 30;
-  --color-bg-subtle: 24 28 39;
-  --color-bg-inverse: 245 246 250;
+  /* ─── Spacing (8px grid) ───────────────────────────────────────────────── */
+  --space-0:       0;
+  --space-1:       4px;
+  --space-2:       8px;
+  --space-3:       12px;
+  --space-4:       16px;
+  --space-5:       20px;
+  --space-6:       24px;
+  --space-7:       32px;
+  --space-8:       40px;
+  --space-9:       48px;
+  --space-10:      64px;
+  --space-11:      80px;
+  --space-12:      96px;
 
-  --color-surface: 22 25 35;
-  --color-surface-raised: 28 32 45;
+  /* ─── Elevation ────────────────────────────────────────────────────────── */
+  --shadow-1:      0 1px 2px rgba(15, 15, 15, 0.04);
+  --shadow-2:      0 6px 20px rgba(15, 15, 15, 0.08);
+  --shadow-3:      0 20px 60px rgba(15, 15, 15, 0.14);
 
-  --color-border: 40 46 60;
-  --color-border-strong: 60 68 86;
+  /* ─── Motion ───────────────────────────────────────────────────────────── */
+  --ease-out:      cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:      120ms;
+  --dur-base:      180ms;
+  --dur-slow:      260ms;
 
-  --color-text: 240 242 247;
-  --color-text-muted: 170 178 196;
-  --color-text-subtle: 124 134 154;
-  --color-text-inverse: 15 18 26;
-
-  --color-primary: 129 140 248;
-  --color-primary-hover: 99 102 241;
-  --color-primary-fg: 18 21 30;
-  --color-primary-subtle: 49 46 95;
-
-  --color-accent: 56 189 248;
-  --color-accent-fg: 18 21 30;
-
-  --color-success: 34 197 94;
-  --color-success-subtle: 20 60 35;
-
-  --color-warning: 234 179 8;
-  --color-warning-subtle: 66 49 9;
-
-  --color-danger: 248 113 113;
-  --color-danger-subtle: 80 23 23;
+  /* ─── App shell sizes ──────────────────────────────────────────────────── */
+  --shell-sidebar: 248px;
+  --shell-topbar:  56px;
 }

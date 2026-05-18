@@ -1,0 +1,9 @@
+/* Lightweight reset */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+button { font: inherit; cursor: pointer; background: none; border: 0; padding: 0; color: inherit; }
+input, select, textarea { font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+img, svg, video { max-width: 100%; display: block; }
+ul, ol { list-style: none; padding: 0; margin: 0; }
+:focus-visible { outline: 2px solid var(--accent-300); outline-offset: 2px; }

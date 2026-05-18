@@ -1,0 +1,28 @@
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: var(--w-semibold);
+  color: var(--ink-strong);
+  background: var(--surface-sunken);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.xs { width: 22px; height: 22px; font-size: 10.5px; }
+.sm { width: 26px; height: 26px; font-size: 11px; }
+.md { width: 28px; height: 28px; font-size: 11.5px; }
+.lg { width: 44px; height: 44px; font-size: 15px; }
+
+/* Tinted variants — pull from spectrum */
+.gray   { background: var(--c-gray-bg);   color: var(--c-gray-text); }
+.brown  { background: var(--c-brown-bg);  color: var(--c-brown-text); }
+.orange { background: var(--c-orange-bg); color: var(--c-orange-text); }
+.yellow { background: var(--c-yellow-bg); color: var(--c-yellow-text); }
+.green  { background: var(--c-green-bg);  color: var(--c-green-text); }
+.teal   { background: var(--c-teal-bg);   color: var(--c-teal-text); }
+.blue   { background: var(--c-blue-bg);   color: var(--c-blue-text); }
+.purple { background: var(--c-purple-bg); color: var(--c-purple-text); }
+.pink   { background: var(--c-pink-bg);   color: var(--c-pink-text); }
+.red    { background: var(--c-red-bg);    color: var(--c-red-text); }
