@@ -44,7 +44,7 @@ export function Sidebar({ classes = DEFAULT_CLASSES, className }: SidebarProps) 
       <NavItem to="/inbox" icon={<IconInbox />} count={2}>
         Inbox
       </NavItem>
-      <NavItem to="/ai-grader" icon={<IconClock />} count={3}>
+      <NavItem to="/grading-queue" icon={<IconClock />} count={3}>
         Grading queue
       </NavItem>
 
