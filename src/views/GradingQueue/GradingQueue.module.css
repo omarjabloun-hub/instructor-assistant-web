@@ -1,0 +1,93 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.header h1 { font-size: 32px; letter-spacing: -0.025em; margin-top: 4px; }
+.header p { color: var(--ink-muted); font-size: 13.5px; margin: 6px 0 0; line-height: 1.55; max-width: 60ch; }
+.chipRow { display: flex; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+.actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+.section { margin-top: 28px; }
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+  gap: 16px;
+}
+.sectionHead h2 { font-size: 17px; letter-spacing: -0.015em; font-weight: var(--w-semibold); }
+.sectionHead .sub { font-size: 12.5px; color: var(--ink-muted); margin-top: 2px; }
+
+.runs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.tableWrap { display: flex; flex-direction: column; gap: 12px; }
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.toolbarLeft { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.toolbarRight { display: flex; gap: 8px; align-items: center; }
+
+.searchWrap {
+  position: relative;
+  width: 240px;
+}
+.searchWrap :global(svg) {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-muted);
+  pointer-events: none;
+}
+.searchWrap input { padding-left: 30px; height: 32px; font-size: 13px; }
+
+.batchBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--ink-strong);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  box-shadow: var(--shadow-2);
+}
+.batchBar .count {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum';
+  font-weight: var(--w-semibold);
+}
+
+.activityRail {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+@media (max-width: 1200px) {
+  .runs { grid-template-columns: 1fr; }
+  .split { grid-template-columns: 1fr; }
+  .activityRail { position: static; }
+}

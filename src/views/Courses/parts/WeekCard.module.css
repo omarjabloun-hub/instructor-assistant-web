@@ -1,0 +1,70 @@
+.card {
+  padding: 10px 12px;
+  background: var(--surface-raised);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  min-height: 116px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+  text-align: left;
+  font: inherit;
+  width: 100%;
+}
+.card:hover { border-color: var(--line-strong); }
+
+.done { background: var(--surface-sunken); }
+.done .title { color: var(--ink-muted); }
+.current {
+  background: var(--surface-raised);
+  border: 1.5px solid var(--ink-strong);
+  box-shadow: var(--shadow-1);
+}
+.future { background: var(--surface-raised); }
+.aiDrafting {
+  border-style: dashed;
+  border-color: var(--accent-300);
+  background: var(--accent-50);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.num { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-muted); }
+.status { width: 6px; height: 6px; border-radius: 50%; }
+.statusDone { background: var(--success-500); }
+.statusCurrent {
+  background: var(--ink-strong);
+  box-shadow: 0 0 0 2px var(--surface-base), 0 0 0 3px var(--ink-strong);
+}
+.statusFuture { background: var(--ink-subtle); }
+.statusAi { background: var(--accent-500); }
+
+.title {
+  font-size: 12.5px;
+  font-weight: var(--w-semibold);
+  color: var(--ink-strong);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.formats { display: flex; gap: 3px; margin-top: auto; }
+.fmt {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.fmtNotes    { background: var(--c-brown-solid); }
+.fmtSlides   { background: var(--c-purple-solid); }
+.fmtReading  { background: var(--c-blue-solid); }
+.fmtPractice { background: var(--c-green-solid); }
+.fmtSummary  { background: var(--c-teal-solid); }
+.fmtVideo    { background: var(--c-pink-solid); }
+.fmtMissing  {
+  background: transparent;
+  border: 1px dashed var(--line-strong);
+}
