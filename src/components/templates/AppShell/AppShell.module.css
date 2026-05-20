@@ -1,0 +1,22 @@
+.app {
+  display: grid;
+  grid-template-columns: var(--shell-sidebar) 1fr;
+  grid-template-rows: var(--shell-topbar) 1fr;
+  min-height: 100vh;
+  background: var(--surface-base);
+}
+.brandCell { grid-column: 1; grid-row: 1; min-width: 0; }
+.topCell   { grid-column: 2; grid-row: 1; min-width: 0; }
+.navCell   { grid-column: 1; grid-row: 2; min-height: 0; }
+.mainCell  { grid-column: 2; grid-row: 2; min-width: 0; overflow-x: hidden; }
+
+.main {
+  padding: 28px 40px 64px;
+  background: var(--surface-base);
+  min-height: 100%;
+}
+.mainFlush {
+  padding: 0;
+  overflow-y: auto;
+  height: calc(100vh - var(--shell-topbar));
+}

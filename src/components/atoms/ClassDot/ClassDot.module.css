@@ -1,0 +1,26 @@
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.sm { width: 6px; height: 6px; border-radius: 2px; }
+.lg { width: 10px; height: 10px; border-radius: 3px; }
+
+.gray   { background: var(--c-gray-solid); }
+.brown  { background: var(--c-brown-solid); }
+.orange { background: var(--c-orange-solid); }
+.yellow { background: var(--c-yellow-solid); }
+.green  { background: var(--c-green-solid); }
+.teal   { background: var(--c-teal-solid); }
+.blue   { background: var(--c-blue-solid); }
+.purple { background: var(--c-purple-solid); }
+.pink   { background: var(--c-pink-solid); }
+.red    { background: var(--c-red-solid); }
+
+.outline {
+  background: transparent;
+  border: 1px dashed var(--line-strong);
+}
+.round { border-radius: 50%; }

@@ -1,0 +1,12 @@
+.track {
+  height: 8px;
+  background: var(--surface-sunken);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+}
+.seg { display: block; height: 100%; }
+
+.sm { height: 4px; }
+.lg { height: 12px; }

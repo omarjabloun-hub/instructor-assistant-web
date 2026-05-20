@@ -1,0 +1,34 @@
+.list {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.tab {
+  padding: 10px 14px;
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  font-weight: var(--w-medium);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  font-family: var(--font-body);
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+.tab:hover { color: var(--ink-body); }
+.tab :global(svg) { stroke: currentColor; }
+.on {
+  color: var(--ink-strong);
+  border-bottom-color: var(--ink-strong);
+}
+.count {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-muted);
+  background: var(--surface-sunken);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+}

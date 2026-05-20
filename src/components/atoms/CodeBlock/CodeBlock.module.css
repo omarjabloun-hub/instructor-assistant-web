@@ -1,0 +1,16 @@
+.block {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  background: var(--ink-strong);
+  color: #E2E8F0;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  margin: 0;
+  overflow: auto;
+  line-height: 1.55;
+  white-space: pre;
+}
+.kw { color: #C4B5FD; }
+.fn { color: #93C5FD; }
+.str { color: #FCD34D; }
+.com { color: #94A3B8; font-style: italic; }

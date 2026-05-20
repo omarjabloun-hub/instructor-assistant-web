@@ -1,0 +1,11 @@
+.kbd {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+  background: var(--surface-sunken);
+  border: 1px solid var(--line-soft);
+  color: var(--ink-muted);
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}

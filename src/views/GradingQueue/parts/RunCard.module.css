@@ -1,0 +1,73 @@
+.card {
+  background: var(--surface-raised);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.card.ai {
+  background:
+    radial-gradient(120% 80% at 100% 0%, var(--ai-50) 0%, transparent 60%),
+    var(--surface-raised);
+  border-color: var(--accent-100);
+}
+.card.done {
+  background: var(--surface-sunken);
+}
+
+.head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.chipRow { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
+.title {
+  font-size: 16px;
+  font-weight: var(--w-semibold);
+  color: var(--ink-strong);
+  letter-spacing: -0.015em;
+  margin: 0;
+  line-height: 1.3;
+}
+.sub { font-size: 12px; color: var(--ink-muted); margin-top: 4px; line-height: 1.4; }
+.subStrong { color: var(--ink-strong); font-weight: var(--w-medium); }
+
+.statsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+.stat { display: flex; flex-direction: column; gap: 2px; }
+.statLbl {
+  font-size: 10.5px;
+  font-weight: var(--w-semibold);
+  letter-spacing: var(--ls-smallcaps);
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.statVal {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink-strong);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--w-medium);
+}
+.statVal .max { color: var(--ink-subtle); font-weight: 400; font-size: 12px; }
+
+.progressLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.eta { font-size: 11.5px; color: var(--ink-muted); display: inline-flex; align-items: center; gap: 5px; }
+.eta :global(svg) { stroke: currentColor; }
